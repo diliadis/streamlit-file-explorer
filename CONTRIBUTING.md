@@ -29,7 +29,7 @@ uv run twine check --strict dist/*
 uv run python scripts/smoke_install.py
 ```
 
-`smoke_install.py` creates a temporary environment, installs both artifacts using pip, and tests the installed code outside the checkout. It needs access to PyPI for dependencies. It also mounts the component through Streamlit's testing runtime. Before a release, run `tests/apps/visual.py` for real-browser interaction checks in light/dark themes and narrow layouts.
+`smoke_install.py` creates a temporary environment, installs both artifacts using pip, and tests the installed code outside the checkout. It needs access to PyPI for dependencies. It also starts a real localhost Streamlit server and verifies the installed JS/CSS asset responses. Before a release, run `tests/apps/visual.py` for real-browser interaction checks in light/dark themes and narrow layouts.
 
 Preserve the separation between filesystem I/O, controller state, the Streamlit adapter and frontend presentation. Keep all file reads bounded, use the v2 component API, and never interpolate filenames or preview contents as HTML. Tests should exercise behavior, failures and regressions.
 

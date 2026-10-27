@@ -41,7 +41,7 @@ A pending publisher creates the project on the first successful upload; it does 
 7. Run `streamlit run tests/apps/visual.py` and check selection, navigation, previews, multiple instances, light/dark themes and narrow layouts. The Python tests alone cannot verify browser behavior.
 8. Commit reviewed changes, push them, and create/push the version tag once CI passes.
 
-The build checks for exactly one nonempty JS bundle and stylesheet. Distribution checks compare all package files between wheel and sdist and verify metadata/licenses. The pip smoke test installs both artifacts in a new environment, runs the API/filesystem/controller tests outside the checkout, and mounts the component in Streamlit's testing runtime.
+The build checks for exactly one nonempty JS bundle and stylesheet. Distribution checks compare all package files between wheel and sdist and verify metadata/licenses. The pip smoke test installs both artifacts in a new environment, runs the API/filesystem/controller tests outside the checkout, and verifies the assets served by a real localhost Streamlit process.
 
 ## Rehearse on TestPyPI
 
