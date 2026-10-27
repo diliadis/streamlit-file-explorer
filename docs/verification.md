@@ -16,7 +16,7 @@ Manual browser checks used the real Streamlit v2 bridge, not a static mockup:
 
 The regression suite exercises traversal rejection, child symlinks, path replacement, nonblocking special-file rejection, deleted files, permission errors, preview truncation, escaped markup, stale actions, callback delivery, and session/instance isolation.
 
-Linux CI is configured but has not been run from this local checkout. No live SLURM allocation, Windows environment, accessibility audit, or very large network-filesystem benchmark has been exercised. Browser checks are manual; frontend unit tests do not replace an end-to-end browser suite.
+No live SLURM allocation, Windows environment, accessibility audit, or very large network-filesystem benchmark has been exercised. Browser checks are manual; frontend unit tests do not replace an end-to-end browser suite.
 
 ## Packaging checks — 2026-10-27
 
@@ -26,3 +26,5 @@ Linux CI is configured but has not been run from this local checkout. No live SL
 - Missing-asset builds and mismatched version tags were correctly rejected.
 - Frontend rebuild matched the committed bundle; all 10 frontend tests passed.
 - Repository destination confirmed as `diliadis/streamlit-file-explorer`; PyPI publication still requires Trusted Publisher configuration.
+
+The [GitHub Actions run for 2cdad11](https://github.com/diliadis/streamlit-file-explorer/actions/runs/40482308316) passed on Linux/Python 3.10/Streamlit 1.53, Linux/Python 3.12, and macOS/Python 3.12. Its installation smoke test uses a real Streamlit server and compares the served JS/CSS against wheel contents, avoiding the mock-registry limitation of older AppTest versions. A separate Python 3.12 environment successfully installed the component directly from GitHub with pip.
