@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "streamlit-file-explorer"
+version = "0.1.0"
+description = "A Finder-style filesystem explorer for local and cluster Streamlit applications"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.10"
+authors = [{ name = "Streamlit File Explorer contributors" }]
+dependencies = ["streamlit>=1.53,<2"]
+keywords = ["streamlit", "component", "file-explorer", "file-picker", "slurm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+    "Topic :: Software Development :: User Interfaces",
+]
+
+[project.urls]
+Homepage = "https://github.com/diliadis/streamlit-file-explorer"
+Documentation = "https://github.com/diliadis/streamlit-file-explorer#readme"
+Repository = "https://github.com/diliadis/streamlit-file-explorer"
+Issues = "https://github.com/diliadis/streamlit-file-explorer/issues"
+Changelog = "https://github.com/diliadis/streamlit-file-explorer/blob/main/CHANGELOG.md"
+
+[dependency-groups]
+dev = [
+    "pytest>=8", "pytest-cov>=6", "ruff>=0.11", "mypy>=1.15", "build>=1.2",
+    "twine>=6", "tomli>=2; python_version < '3.11'",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["streamlit_file_explorer"]
+
+[tool.setuptools.packages.find]
+include = ["streamlit_file_explorer*"]
+namespaces = false
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.cmdclass]
+build_py = "build_support.CheckedBuildPy"
+sdist = "build_support.CheckedSdist"
+
+[tool.setuptools.package-data]
+streamlit_file_explorer = ["frontend/build/*.js", "frontend/build/*.css", "pyproject.toml", "py.typed"]

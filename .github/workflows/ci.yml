@@ -1,0 +1,77 @@
+name: Test and package
+on:
+  push:
+  pull_request:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: '3.10'
+            streamlit: minimum
+          - os: ubuntu-latest
+            python: '3.12'
+            streamlit: locked
+          - os: macos-latest
+            python: '3.12'
+            streamlit: locked
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: streamlit_file_explorer/frontend/package-lock.json
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          python-version: ${{ matrix.python }}
+          enable-cache: true
+      - run: uv sync --frozen
+      - if: matrix.streamlit == 'minimum'
+        run: uv pip install 'streamlit==1.53.0'
+      - name: Test and rebuild the frontend
+        working-directory: streamlit_file_explorer/frontend
+        run: |
+          npm ci
+          npm run format:check
+          npm test
+          npm run build
+      - name: Check that committed assets are current
+        run: |
+          git diff --exit-code -- streamlit_file_explorer/frontend/build
+          test -z "$(git ls-files --others --exclude-standard -- streamlit_file_explorer/frontend/build)"
+      - name: Validate version and release tag
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          uv run --no-sync python scripts/check_release.py
+          if [ "$REF_TYPE" = tag ]; then
+            uv run --no-sync python scripts/check_release.py --tag "$REF_NAME"
+          fi
+      - name: Test Python and build distributions
+        run: |
+          uv run --no-sync ruff check .
+          uv run --no-sync ruff format --check .
+          uv run --no-sync mypy
+          uv run --no-sync pytest --cov=streamlit_file_explorer --cov-report=term-missing
+          uv build
+          uv run --no-sync python scripts/check_distribution.py
+          uv run --no-sync twine check --strict dist/*
+      - name: Test pip installation outside the checkout
+        run: uv run --no-sync python scripts/smoke_install.py
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: distributions-${{ matrix.os }}-${{ matrix.python }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,24 @@
+name: Bug report
+description: Report unexpected explorer behavior.
+labels: [bug]
+body:
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Include a small app and reproduction steps. Use synthetic files and redact private paths.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Package, Python, Streamlit and browser versions; OS; local or cluster; filesystem type if relevant.
+    validations:
+      required: true

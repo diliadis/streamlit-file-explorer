@@ -1,0 +1,15 @@
+include LICENSE THIRD_PARTY_NOTICES.md README.md pyproject.toml uv.lock
+include build_support.py CHANGELOG.md CONTRIBUTING.md SECURITY.md
+include streamlit_app.py example.py
+include .streamlit/config.toml
+include examples/data/workspace/.example-hidden
+recursive-include scripts *.py
+recursive-include docs *.md
+recursive-include examples *.sbatch *.md *.txt *.csv *.tsv *.pdb *.yaml
+recursive-include tests *.py
+include streamlit_file_explorer/pyproject.toml streamlit_file_explorer/py.typed
+recursive-include streamlit_file_explorer/frontend/build *.js *.css
+recursive-include streamlit_file_explorer/frontend/src *.ts *.tsx *.css
+include streamlit_file_explorer/frontend/*.json streamlit_file_explorer/frontend/*.ts
+prune streamlit_file_explorer/frontend/node_modules
+prune tests/__pycache__

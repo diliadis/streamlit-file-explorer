@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#6777d8"
+baseRadius = "0.5rem"
+
+[browser]
+gatherUsageStats = false

@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+/build/
+node_modules/
+# The small production frontend bundle is versioned for Node-free pip installs.
+streamlit_file_explorer/frontend/build/*.map
+docs/preview.png
+.env
+.env.*
+.pypirc
+.streamlit/secrets.toml
+.DS_Store
+*.log

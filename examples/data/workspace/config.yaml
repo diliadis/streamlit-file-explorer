@@ -1,0 +1,6 @@
+run: docking-screen
+receptor: structures/receptor.pdb
+ligands: library.sdf
+exhaustiveness: 32
+seed: 42
+output: results/
