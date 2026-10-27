@@ -2,7 +2,7 @@
 
 A reusable Finder-style file picker built with **Streamlit Custom Components v2**, React, and TypeScript. Browse explicitly configured directories on the machine running Streamlit: your laptop, a server, or a SLURM compute node with mounted project storage.
 
-This is **0.1.0, preparing for its first public release**. It is pip-installable from this source tree or a built wheel/sdist; it has not been uploaded to PyPI yet. Source: [diliadis/streamlit-file-explorer](https://github.com/diliadis/streamlit-file-explorer). It supports macOS and Linux. A real SLURM deployment has not yet been validated.
+Version **0.1.0** is the initial alpha release. Source: [diliadis/streamlit-file-explorer](https://github.com/diliadis/streamlit-file-explorer). It supports macOS and Linux. The public API may change in 0.x releases; a real SLURM deployment has not yet been validated.
 
 ## What it does
 
@@ -20,7 +20,13 @@ There are no file mutations, uploads, downloads, recursive search, remote SSH br
 
 Requires Python 3.10+ and Streamlit 1.53+. Installing the package does **not** require Node.js: the production frontend is included.
 
-From this checkout:
+Install from PyPI:
+
+```bash
+python -m pip install streamlit-file-explorer
+```
+
+Or install from this checkout:
 
 ```bash
 python -m pip install .
@@ -38,13 +44,7 @@ Install the current development version directly from GitHub:
 python -m pip install "git+https://github.com/diliadis/streamlit-file-explorer.git@main"
 ```
 
-**After publication to PyPI**, the standard command will be:
-
-```bash
-python -m pip install streamlit-file-explorer
-```
-
-The GitHub install follows `main`; pin a commit for reproducibility. The PyPI command becomes available after the first release is published.
+The GitHub install follows `main`; pin a commit for reproducibility. To pin the initial PyPI release, use `streamlit-file-explorer==0.1.0`.
 
 ## Run the demo
 

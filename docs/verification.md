@@ -22,9 +22,9 @@ No live SLURM allocation, Windows environment, accessibility audit, or very larg
 
 - Added and validated complete Apache-2.0 and bundled third-party license notices.
 - Twine strict metadata/README checks passed for wheel and sdist.
-- Fresh pip environments passed all 61 Python tests after installing the wheel and again after installing the sdist. Streamlit's testing runtime mounted the installed component.
+- Fresh pip environments passed all 61 Python tests after installing the wheel and again after installing the sdist. A real Streamlit server served the installed component's bundled assets.
 - Missing-asset builds and mismatched version tags were correctly rejected.
 - Frontend rebuild matched the committed bundle; all 10 frontend tests passed.
-- Repository destination confirmed as `diliadis/streamlit-file-explorer`; PyPI publication still requires Trusted Publisher configuration.
+- Repository destination confirmed as `diliadis/streamlit-file-explorer`; the PyPI Trusted Publisher and tag-restricted GitHub `pypi` environment were configured on 2026-10-27.
 
 The [GitHub Actions run for 2cdad11](https://github.com/diliadis/streamlit-file-explorer/actions/runs/40482308316) passed on Linux/Python 3.10/Streamlit 1.53, Linux/Python 3.12, and macOS/Python 3.12. Its installation smoke test uses a real Streamlit server and compares the served JS/CSS against wheel contents, avoiding the mock-registry limitation of older AppTest versions. A separate Python 3.12 environment successfully installed the component directly from GitHub with pip.

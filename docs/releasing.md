@@ -2,9 +2,7 @@
 
 ## Current status
 
-The source tree and built wheel/sdist are pip-installable. The repository is **diliadis/streamlit-file-explorer**. A PyPI project has not yet been created; Trusted Publishing must be configured before uploading a release.
-
-A PyPI lookup on 2026-10-25 found no existing `streamlit-file-explorer` project. That does not reserve the name or guarantee that PyPI will accept it.
+The repository is **diliadis/streamlit-file-explorer**. Production publishing uses its `release.yml` workflow and the GitHub environment **pypi**, restricted to tags matching `v*`. The corresponding PyPI Trusted Publisher was registered under the `diliadis` account on 2026-10-27. TestPyPI is optional and has not been configured.
 
 ## First repository setup
 
@@ -16,7 +14,7 @@ Enable the repository's private vulnerability reporting. Configure branch protec
 
 Use PyPI Trusted Publishing rather than putting a long-lived upload token in the repository. This workflow follows the [Python Packaging User Guide](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/).
 
-1. Sign in to your PyPI and TestPyPI accounts (they are separate services).
+1. Sign in to PyPI. If rehearsing on TestPyPI, sign in to that separate service too.
 2. Create GitHub environments named **testpypi** and **pypi**. Restrict deployments to version tags; configure required reviewers where your account supports them.
 3. In each index, register a pending GitHub publisher with:
 
@@ -28,7 +26,7 @@ Use PyPI Trusted Publishing rather than putting a long-lived upload token in the
    | Workflow filename | `release.yml` |
    | Environment | `testpypi` on TestPyPI; `pypi` on PyPI |
 
-A pending publisher creates the project on the first successful upload; it does not reserve the name. See [PyPI's setup documentation](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/). These account settings require access to your accounts and have not been configured here.
+A pending publisher creates the project on the first successful upload; it does not reserve the name. See [PyPI's setup documentation](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/). Production setup is complete for this repository; repeat these steps only for a new repository or the optional TestPyPI environment.
 
 ## Prepare a release
 
