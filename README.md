@@ -2,6 +2,10 @@
 
 A reusable Finder-style file picker built with **Streamlit Custom Components v2**, React, and TypeScript. Browse explicitly configured directories on the machine running Streamlit: your laptop, a server, or a SLURM compute node with mounted project storage.
 
+![Streamlit File Explorer showing folder locations, a detailed file list, and a preview of the selected CSV file](https://raw.githubusercontent.com/diliadis/streamlit-file-explorer/main/docs/assets/file-explorer-preview.png)
+
+*Browse folders, preview file contents, and confirm your selection. Shown with the bundled sample data.*
+
 Version **0.1.0** is the initial alpha release. Source: [diliadis/streamlit-file-explorer](https://github.com/diliadis/streamlit-file-explorer). It supports macOS and Linux. The public API may change in 0.x releases; a real SLURM deployment has not yet been validated.
 
 ## What it does
